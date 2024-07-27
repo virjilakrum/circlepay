@@ -1,10 +1,17 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
 
-export async function GET() {
+export async function POST(req) {
   try {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_CIRCLE_API_URL}/wallets`,
+    const { sourceWalletId, destinationWalletId, amount } = await req.json();
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_CIRCLE_API_URL}/transfers`,
+      {
+        sourceWalletId,
+        destinationWalletId,
+        amount,
+        currency: "USD",
+      },
       {
         headers: {
           Authorization: `Bearer ${process.env.NEXT_PUBLIC_CIRCLE_API_KEY}`,
