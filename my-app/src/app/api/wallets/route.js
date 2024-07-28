@@ -13,6 +13,7 @@ export async function GET() {
     );
     return NextResponse.json(response.data);
   } catch (error) {
+    console.error("Error fetching wallets:", error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

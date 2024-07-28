@@ -20,6 +20,7 @@ export async function POST(req) {
     );
     return NextResponse.json(response.data);
   } catch (error) {
+    console.error("Error performing transfer:", error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
